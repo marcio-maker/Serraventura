@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Serraventura - Refúgio entre montanhas na Serra da Mantiqueira. Cabanas exclusivas com experiências únicas.">
+    <title>Serraventura | Hospedagem na Serra da Mantiqueira</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/5512999999999" class="whatsapp-button" aria-label="Fale conosco pelo WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Serraventura</a>
+                <button class="hamburger" aria-label="Abrir menu" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="nav-links">
+                    <a href="#acomodacoes">Acomodações</a>
+                    <a href="#experiencias">Experiências</a>
+                    <a href="#galeria">Galeria</a>
+                    <a href="#reservas">Reservas</a>
+                    <a href="#contato">Contato</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section with Three.js -->
+    <section class="hero">
+        <canvas id="three-canvas"></canvas>
+        <div class="hero-content">
+            <h1>Aventura e conforto na Serra da Mantiqueira</h1>
+            <p>Descubra nossos refúgios privativos entre araucárias e vistas panorâmicas das montanhas</p>
+            <div class="hero-buttons">
+                <a href="#acomodacoes" class="btn btn-primary">Explorar Acomodações</a>
+                <a href="#reservas" class="btn btn-outline">Reservar Agora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="highlights">
+        <div class="container">
+            <div class="highlights-grid">
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3>Vista panorâmica</h3>
+                    <p>Contemple a beleza da Serra da Mantiqueira de um ângulo privilegiado</p>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-hot-tub"></i>
+                    </div>
+                    <h3>Ofurôs privativos</h3>
+                    <p>Relaxe em águas quentes sob o céu estrelado das montanhas</p>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>Lareira</h3>
+                    <p>Aconchego e romantismo para as noites frias da serra</p>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-hiking"></i>
+                    </div>
+                    <h3>Trilhas privativas</h3>
+                    <p>Explore a natureza com trilhas exclusivas para nossos hóspedes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Acomodações Section -->
+    <section id="acomodacoes" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossas Acomodações</h2>
+                <p>Escolha o refúgio perfeito para sua experiência na Serra da Mantiqueira</p>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="carousel-track">
+
+                        <div class="accommodation-card">
+                            <div class="accommodation-img">
+                                <img src="https://i.pinimg.com/736x/78/ca/37/78ca37d9a8b69e0f6ffeecb6921d0801.jpg" alt="Cabana Araucária" loading="lazy">
+                                <span class="accommodation-tag">Mais Popular</span>
+                            </div>
+                            <div class="accommodation-content">
+                                <h3>Cabana Araucária</h3>
+                                <div class="accommodation-meta">
+                                    <span><i class="fas fa-user-friends"></i> 2 pessoas</span>
+                                    <span><i class="fas fa-vector-square"></i> 40m²</span>
+                                </div>
+                                <div class="accommodation-features">
+                                    <span><i class="fas fa-hot-tub"></i> Ofurô</span>
+                                    <span><i class="fas fa-fire"></i> Lareira</span>
+                                    <span><i class="fas fa-mountain"></i> Vista panorâmica</span>
+                                </div>
+                                <div class="accommodation-footer">
+                                    <div class="accommodation-price">
+                                        <span class="price">R$ 790</span>
+                                        <span class="period">/ noite</span>
+                                    </div>
+                                    <a href="#reservas" class="btn btn-secondary">Reservar</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accommodation-card">
+                            <div class="accommodation-img">
+                                <img src="https://i.pinimg.com/736x/cb/24/b5/cb24b5dcb5c11730c793bdd6cf0676a5.jpg" alt="Cabana Vale Encantado" loading="lazy">
+                            </div>
+                            <div class="accommodation-content">
+                                <h3>Cabana Vale Encantado</h3>
+                                <div class="accommodation-meta">
+                                    <span><i class="fas fa-user-friends"></i> 2 pessoas</span>
+                                    <span><i class="fas fa-vector-square"></i> 45m²</span>
+                                </div>
+                                <div class="accommodation-features">
+                                    <span><i class="fas fa-hot-tub"></i> Ofurô</span>
+                                    <span><i class="fas fa-fire"></i> Lareira</span>
+                                    <span><i class="fas fa-utensils"></i> Cozinha equipada</span>
+                                </div>
+                                <div class="accommodation-footer">
+                                    <div class="accommodation-price">
+                                        <span class="price">R$ 850</span>
+                                        <span class="period">/ noite</span>
+                                    </div>
+                                    <a href="#reservas" class="btn btn-secondary">Reservar</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accommodation-card">
+                            <div class="accommodation-img">
+                                <img src="https://i.pinimg.com/736x/76/f8/9e/76f89eb83107216a1a7004fa2e84bcb0.jpg" alt="Chalé Montanha" loading="lazy">
+                            </div>
+                            <div class="accommodation-content">
+                                <h3>Chalé Montanha</h3>
+                                <div class="accommodation-meta">
+                                    <span><i class="fas fa-user-friends"></i> 4 pessoas</span>
+                                    <span><i class="fas fa-vector-square"></i> 60m²</span>
+                                </div>
+                                <div class="accommodation-features">
+                                    <span><i class="fas fa-hot-tub"></i> Ofurô</span>
+                                    <span><i class="fas fa-fire"></i> Lareira</span>
+                                    <span><i class="fas fa-snowflake"></i> Isolamento térmico</span>
+                                </div>
+                                <div class="accommodation-footer">
+                                    <div class="accommodation-price">
+                                        <span class="price">R$ 990</span>
+                                        <span class="period">/ noite</span>
+                                    </div>
+                                    <a href="#reservas" class="btn btn-secondary">Reservar</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accommodation-card">
+                            <div class="accommodation-img">
+                                <img src="https://i.pinimg.com/736x/82/89/2f/82892f1a1ff63cb3235727e245f2b00c.jpg" alt="Cabana Luxo Mantiqueira" loading="lazy">
+                            </div>
+                            <div class="accommodation-content">
+                                <h3>Cabana Luxo Mantiqueira</h3>
+                                <div class="accommodation-meta">
+                                    <span><i class="fas fa-user-friends"></i> 2 pessoas</span>
+                                    <span><i class="fas fa-vector-square"></i> 55m²</span>
+                                </div>
+                                <div class="accommodation-features">
+                                    <span><i class="fas fa-wifi"></i> Wi-Fi Premium</span>
+                                    <span><i class="fas fa-tv"></i> Smart TV 55"</span>
+                                </div>
+                                <div class="accommodation-footer">
+                                    <div class="accommodation-price">
+                                        <span class="price">R$ 990</span>
+                                        <span class="period">/ noite</span>
+                                    </div>
+                                    <a href="#reservas" class="btn btn-secondary">Reservar</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accommodation-card">
+                            <div class="accommodation-img">
+                                <img src="https://i.pinimg.com/736x/4f/1e/3b/4f1e3b54ffa3c8285cbbc2cf5299c598.jpg" alt="Chalé Bosque Secreto" loading="lazy">
+                            </div>
+                            <div class="accommodation-content">
+                                <h3>Chalé Bosque Secreto</h3>
+                                <div class="accommodation-meta">
+                                    <span><i class="fas fa-user-friends"></i> 3 pessoas</span>
+                                    <span><i class="fas fa-vector-square"></i> 50m²</span>
+                                </div>
+                                <div class="accommodation-features">
+                                    <span><i class="fas fa-tree"></i> Bosque Privativo</span>
+                                    <span><i class="fas fa-snowflake"></i> Isolamento térmico</span>
+                                </div>
+                                <div class="accommodation-footer">
+                                    <div class="accommodation-price">
+                                        <span class="price">R$ 850</span>
+                                        <span class="period">/ noite</span>
+                                    </div>
+                                    <a href="#reservas" class="btn btn-secondary">Reservar</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                       
+                        <div class="accommodation-card">
+                            <div class="accommodation-img">
+                                <img src="https://i.pinimg.com/736x/b9/a2/bb/b9a2bbf93b60e4547829c38f70d0357c.jpg" alt="Cabana da Neblina" loading="lazy">
+                            </div>
+                            <div class="accommodation-content">
+                                <h3>Cabana da Neblina</h3>
+                                <div class="accommodation-meta">
+                                    <span><i class="fas fa-user-friends"></i> 2 pessoas</span>
+                                    <span><i class="fas fa-vector-square"></i> 42m²</span>
+                                </div>
+                                <div class="accommodation-features">
+                                    <span><i class="fas fa-hot-tub"></i> Ofurô</span>
+                                    <span><i class="fas fa-fire"></i> Lareira</span>
+                                    <span><i class="fas fa-glass-cheers"></i> Welcome drink</span>
+                                </div>
+                                <div class="accommodation-footer">
+                                    <div class="accommodation-price">
+                                        <span class="price">R$ 820</span>
+                                        <span class="period">/ noite</span>
+                                    </div>
+                                    <a href="#reservas" class="btn btn-secondary">Reservar</a>
+                                </div>
+                            </div>
+                        </div>
+
+                     
+                    </div>
+                </div>
+                <button class="carousel-button prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-button next" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiências Section -->
+    <section id="experiencias" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Experiências Exclusivas</h2>
+                <p>Aproveite ao máximo sua estadia com nossas experiências cuidadosamente selecionadas</p>
+            </div>
+            <div class="experiences-grid">
+                <div class="experience-card">
+                    <div class="experience-img">
+                        <img src="https://i.pinimg.com/736x/34/90/62/349062918f1fe099b4157d616506fc06.jpg" alt="Piquenique ao pôr do sol" loading="lazy">
+                    </div>
+                    <div class="experience-content">
+                        <h3>Piquenique ao Pôr do Sol</h3>
+                        <p>Cesta gourmet com produtos locais, champagne e vista para o vale</p>
+                        <a href="#reservas" class="btn-text">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-img">
+                        <img src="https://i.pinimg.com/736x/7e/65/33/7e65335fa3b1abab46eb28eaf3bee665.jpg" alt="Massagem relaxante" loading="lazy">
+                    </div>
+                    <div class="experience-content">
+                        <h3>Massagem Relaxante</h3>
+                        <p>Ritual de relaxamento com óleos essenciais da região e pedras quentes</p>
+                        <a href="#reservas" class="btn-text">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-img">
+                        <img src="https://i.pinimg.com/736x/62/ae/99/62ae997391137516f50574db461dd7ca.jpg" alt="Observação de estrelas" loading="lazy">
+                    </div>
+                    <div class="experience-content">
+                        <h3>Observação de Estrelas</h3>
+                        <p>Tour noturno pelo céu da serra com telescópio e astrólogo especializado</p>
+                        <a href="#reservas" class="btn-text">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-img">
+                        <img src="https://i.pinimg.com/736x/78/ae/06/78ae0625243e19e0b60d39ebbcd97cd1.jpg" alt="Trilha exclusiva" loading="lazy">
+                    </div>
+                    <div class="experience-content">
+                        <h3>Trilha Guiada Exclusiva</h3>
+                        <p>Aventura personalizada com guia local e visita a cachoeiras escondidas</p>
+                        <a href="#reservas" class="btn-text">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria Section -->
+    <section id="galeria" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Galeria</h2>
+                <p>Conheça um pouco mais da experiência única que oferecemos</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item wide">
+                    <img src="https://i.pinimg.com/736x/44/54/fc/4454fc272432c2c0adc2ce8489cb4ee3.jpg" alt="Vista panorâmica da serra" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.pinimg.com/736x/3e/a1/2c/3ea12cf625e99638afe1a2f942b1784d.jpg" alt="Interior da cabana" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.pinimg.com/736x/78/ca/37/78ca37d9a8b69e0f6ffeecb6921d0801.jpg" alt="Ofurô com vista" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.pinimg.com/736x/c7/da/ee/c7daeecbf9c3619ee84ef76f3609cf35.jpg" alt="Café da manhã especial" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.pinimg.com/736x/ab/6e/3d/ab6e3dc130fb32b707f7113b70f1996b.jpg" alt="Pôr do sol na serra" loading="lazy">
+                </div>
+                <div class="gallery-item wide">
+                    <img src="https://i.pinimg.com/736x/4d/f1/f0/4df1f05f73bc6cf13b868aef4907ce2e.jpg" alt="Casal apreciando a vista" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservas Section -->
+    <section id="reservas" class="section bg-dark">
+        <div class="container">
+            <div class="section-header light">
+                <h2>Faça sua Reserva</h2>
+                <p style="color: #b5abab;">Garanta sua experiência única na Serra da Mantiqueira</p>
+            </div>
+            <div class="booking-container">
+                <form id="booking-form" class="booking-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="accommodation">Acomodação</label>
+                            <select id="accommodation" required>
+                                <option value="">Selecione uma acomodação</option>
+                                <option value="araucaria">Cabana Araucária</option>
+                                <option value="vale">Cabana Vale Encantado</option>
+                                <option value="montanha">Chalé Montanha</option>
+                                <option value="neblina">Cabana da Neblina</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="checkin">Check-in</label>
+                            <input type="text" id="checkin" placeholder="Selecione a data" readonly required>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkout">Check-out</label>
+                            <input type="text" id="checkout" placeholder="Selecione a data" readonly required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="guests">Hóspedes</label>
+                            <select id="guests" required>
+                                <option value="1">1 hóspede</option>
+                                <option value="2" selected>2 hóspedes</option>
+                                <option value="3">3 hóspedes</option>
+                                <option value="4">4 hóspedes</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="add-ons">Experiências</label>
+                            <select id="add-ons">
+                                <option value="">Selecione uma experiência (opcional)</option>
+                                <option value="piquenique">Piquenique ao Pôr do Sol</option>
+                                <option value="massagem">Massagem Relaxante</option>
+                                <option value="estrelas">Observação de Estrelas</option>
+                                <option value="trilha">Trilha Guiada Exclusiva</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nome completo</label>
+                            <input type="text" id="name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="special-requests">Pedidos especiais (opcional)</label>
+                            <textarea id="special-requests" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Verificar Disponibilidade</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Depoimentos</h2>
+                <p>O que nossos hóspedes dizem sobre a experiência</p>
+            </div>
+            <div class="testimonials-carousel">
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>"Uma experiência inesquecível! A cabana era lindíssima, com uma vista de tirar o fôlego. O ofurô sob as estrelas foi mágico. Certamente voltaremos!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="https://i.pravatar.cc/60?img=1" alt="Avatar" loading="lazy">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Mariana e Pedro</h4>
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>"Cada detalhe foi cuidadosamente pensado para proporcionar uma experiência única. A massagem relaxante é imperdível! Ambiente aconchegante e atendimento impecável."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="https://i.pravatar.cc/60?img=5" alt="Avatar" loading="lazy">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Ana e Carlos</h4>
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Entre em Contato</h2>
+                <p>Estamos à disposição para tornar sua experiência perfeita</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Endereço</h4>
+                            <p>Serra da Mantiqueira - Estrada das Araucárias, km 12<br>São Bento do Sapucaí - SP</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Telefone</h4>
+                            <p><a href="tel:+5512999999999">(12) 99999-9999</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:contato@serraventura.com">contato@serraventura.com</a></p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="WhatsApp" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="TripAdvisor" class="social-link"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-name">Nome</label>
+                            <input type="text" id="contact-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Email</label>
+                            <input type="email" id="contact-email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-subject">Assunto</label>
+                            <input type="text" id="contact-subject" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="contact-message">Mensagem</label>
+                            <textarea id="contact-message" rows="5" required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Theme Toggle Switch -->
+<div class="theme-switch-wrapper">
+    <span>Modo Escuro</span>
+    <label class="theme-switch">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider round"></span>
+    </label>
+</div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <a href="#" class="footer-logo">Serraventura</a>
+                    <p>Refúgio exclusivo na Serra da Mantiqueira com cabanas privativas, ofurôs e experiências inesquecíveis para casais e famílias.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="WhatsApp" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="TripAdvisor" class="social-link"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Links Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#acomodacoes">Acomodações</a></li>
+                        <li><a href="#experiencias">Experiências</a></li>
+                        <li><a href="#galeria">Galeria</a></li>
+                        <li><a href="#reservas">Reservas</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Inscreva-se para receber nossas novidades e promoções exclusivas</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Seu email" required>
+                        <button type="submit" class="btn btn-primary">Inscrever</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Serraventura. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/l10n/pt.js"></script>
+    <script src="three-scene.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
