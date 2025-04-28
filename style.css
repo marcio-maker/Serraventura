@@ -106,7 +106,6 @@ img {
 
 .bg-light {
     background-color: var(--bg-light);
-    
 }
 
 .bg-dark {
@@ -302,7 +301,6 @@ header {
     width: 100%;
     height: 100%;
     z-index: -1;
-
 }
 
 .hero-content {
@@ -413,8 +411,8 @@ header {
 .carousel-track {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    gap: 30px;
-    padding: 20px 0;
+    gap: 20px; /* Reduced gap for smaller cards */
+    padding: 15px 0; /* Reduced padding */
 }
 
 .carousel-button {
@@ -458,7 +456,7 @@ header {
     overflow: hidden;
     box-shadow: var(--box-shadow);
     transition: var(--transition);
-    min-width: 300px;
+    min-width: 250px; /* Reduced min-width for smaller cards */
     flex: 0 0 auto;
     scroll-snap-align: start;
 }
@@ -470,7 +468,7 @@ header {
 
 .accommodation-img {
     position: relative;
-    height: 200px;
+    height: 150px; /* Reduced image height */
     overflow: hidden;
 }
 
@@ -487,51 +485,51 @@ header {
 
 .accommodation-tag {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 10px;
+    right: 10px;
     background-color: var(--secondary-color);
     color: var(--white);
-    padding: 5px 10px;
+    padding: 4px 8px;
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
 }
 
 .accommodation-content {
-    padding: 20px;
+    padding: 15px; /* Reduced padding */
 }
 
 .accommodation-content h3 {
-    font-size: 22px;
-    margin-bottom: 10px;
+    font-size: 18px; /* Smaller font size */
+    margin-bottom: 8px;
 }
 
 .accommodation-meta {
     display: flex;
-    gap: 15px;
-    margin-bottom: 15px;
-    font-size: 14px;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 13px; /* Smaller font size */
     color: var(--text-light);
 }
 
 .accommodation-meta span {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
 }
 
 .accommodation-features {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 8px;
+    margin-bottom: 15px;
 }
 
 .accommodation-features span {
     display: flex;
     align-items: center;
-    gap: 5px;
-    font-size: 14px;
+    gap: 4px;
+    font-size: 13px; /* Smaller font size */
     color: var(--text-light);
 }
 
@@ -547,13 +545,13 @@ header {
 }
 
 .price {
-    font-size: 22px;
+    font-size: 18px; /* Smaller font size */
     font-weight: 700;
     color: var(--primary-color);
 }
 
 .period {
-    font-size: 14px;
+    font-size: 12px; /* Smaller font size */
     color: var(--text-light);
     margin-left: 5px;
 }
@@ -982,7 +980,7 @@ footer {
     }
     
     .accommodation-card {
-        min-width: 280px;
+        min-width: 220px; /* Further reduced for small screens */
     }
     
     .gallery-grid {
@@ -997,7 +995,6 @@ footer {
         padding: 30px 20px;
     }
 }
-
 
 /* Dark Mode */
 body.dark-mode {
@@ -1148,6 +1145,7 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
 /* Garantir contraste no modo claro */
 body:not(.dark-mode) {
     color: #333333;
@@ -1224,7 +1222,6 @@ body.dark-mode .highlight-item h3 {
 body.dark-mode .highlight-item p {
     color: #1d1919;
 }
-
 
 /* Ajustes para o footer no modo claro */
 body:not(.dark-mode) footer {
