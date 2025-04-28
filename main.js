@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const nextBtn = container.querySelector('.next');
         
         let currentIndex = 0;
-        const cardWidth = cards[0].offsetWidth + 30; // Width + gap
+        const cardWidth = cards[0].offsetWidth + 20; // Updated to match new gap
         
         function updateCarousel() {
             track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
@@ -205,6 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
 // Dark Mode Toggle
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
