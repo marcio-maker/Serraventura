@@ -480,6 +480,13 @@ header {
     transition: var(--transition);
 }
 
+@media (max-width: 480px) {
+    .accommodation-img {
+        height: 100px; /* Further reduced image height for mobile */
+    }
+}
+
+
 .accommodation-card:hover .accommodation-img img {
     transform: scale(1.05);
 }
