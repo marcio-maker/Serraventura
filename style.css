@@ -116,14 +116,14 @@ img {
 /* Buttons */
 .btn {
     display: inline-block;
-    padding: 12px 24px;
+    padding: 10px 20px; /* Slightly smaller padding */
     border-radius: 4px;
     font-weight: 600;
     text-align: center;
     cursor: pointer;
     transition: var(--transition);
     border: none;
-    font-size: 16px;
+    font-size: 14px; /* Smaller font size */
 }
 
 .btn-primary {
@@ -411,8 +411,8 @@ header {
 .carousel-track {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    gap: 20px; /* Reduced gap for smaller cards */
-    padding: 15px 0; /* Reduced padding */
+    gap: 15px; /* Further reduced gap for tighter spacing */
+    padding: 10px 0; /* Further reduced padding */
 }
 
 .carousel-button {
@@ -456,10 +456,9 @@ header {
     overflow: hidden;
     box-shadow: var(--box-shadow);
     transition: var(--transition);
-    min-width: 250px; /* Reduced min-width for smaller cards */
+    min-width: 200px; /* Further reduced min-width for narrower cards */
     flex: 0 0 auto;
     scroll-snap-align: start;
-    box-sizing: border-box; /* Prevent layout issues */
 }
 
 .accommodation-card:hover {
@@ -469,7 +468,7 @@ header {
 
 .accommodation-img {
     position: relative;
-    height: 150px; /* Reduced image height */
+    height: 120px; /* Further reduced image height */
     overflow: hidden;
 }
 
@@ -480,64 +479,57 @@ header {
     transition: var(--transition);
 }
 
-@media (max-width: 480px) {
-    .accommodation-img {
-        height: 100px; /* Further reduced image height for mobile */
-    }
-}
-
-
 .accommodation-card:hover .accommodation-img img {
     transform: scale(1.05);
 }
 
 .accommodation-tag {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 8px;
+    right: 8px;
     background-color: var(--secondary-color);
     color: var(--white);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 11px;
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-size: 10px;
     font-weight: 600;
 }
 
 .accommodation-content {
-    padding: 15px; /* Reduced padding */
+    padding: 12px; /* Further reduced padding */
 }
 
 .accommodation-content h3 {
-    font-size: 18px; /* Smaller font size */
-    margin-bottom: 8px;
+    font-size: 16px; /* Smaller font size */
+    margin-bottom: 6px;
 }
 
 .accommodation-meta {
     display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-    font-size: 13px; /* Smaller font size */
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 12px; /* Smaller font size */
     color: var(--text-light);
 }
 
 .accommodation-meta span {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 3px;
 }
 
 .accommodation-features {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 15px;
+    gap: 6px;
+    margin-bottom: 12px;
 }
 
 .accommodation-features span {
     display: flex;
     align-items: center;
-    gap: 4px;
-    font-size: 13px; /* Smaller font size */
+    gap: 3px;
+    font-size: 12px; /* Smaller font size */
     color: var(--text-light);
 }
 
@@ -553,15 +545,15 @@ header {
 }
 
 .price {
-    font-size: 18px; /* Smaller font size */
+    font-size: 16px; /* Smaller font size */
     font-weight: 700;
     color: var(--primary-color);
 }
 
 .period {
-    font-size: 12px; /* Smaller font size */
+    font-size: 11px; /* Smaller font size */
     color: var(--text-light);
-    margin-left: 5px;
+    margin-left: 4px;
 }
 
 /* Experiences Grid */
@@ -830,7 +822,7 @@ textarea {
 }
 
 /* Footer */
-footer {
+footer {
     background-color: var(--bg-dark);
     color: var(--white);
     padding: 60px 0 20px;
@@ -988,7 +980,7 @@ footer {
     }
     
     .accommodation-card {
-        min-width: 220px; /* Further reduced for small screens */
+        min-width: 180px; /* Further reduced for small screens */
     }
     
     .gallery-grid {
