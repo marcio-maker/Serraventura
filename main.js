@@ -1,298 +1,1238 @@
-// Mobile Navigation
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
+/* Base Styles */
+:root {
+    --primary-color: #235e3d;
+    --primary-light: #3a8759;
+    --primary-dark: #1a472e;
+    --secondary-color: #d9a45b;
+    --secondary-light: #e4ba7e;
+    --secondary-dark: #b78339;
+    --text-color: #333333;
+    --text-light: #666666;
+    --text-lightest: #999999;
+    --bg-light: #f8f9fa;
+    --bg-dark: #2c3e50;
+    --white: #ffffff;
+    --gray-100: #f7f7f7;
+    --gray-200: #e9e9e9;
+    --gray-300: #d5d5d5;
+    --gray-400: #b0b0b0;
+    --gray-500: #8a8a8a;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --box-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
 
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', navLinks.classList.contains('active'));
-});
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-    });
-});
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--white);
+    overflow-x: hidden;
+}
 
-// Carousel Functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const carouselContainers = document.querySelectorAll('.carousel-container');
-    
-    carouselContainers.forEach(container => {
-        const carousel = container.querySelector('.carousel');
-        const track = container.querySelector('.carousel-track');
-        const cards = container.querySelectorAll('.accommodation-card, .testimonial-item');
-        const prevBtn = container.querySelector('.prev');
-        const nextBtn = container.querySelector('.next');
-        
-        let currentIndex = 0;
-        const cardWidth = cards[0].offsetWidth + 20; // Updated to match new gap
-        
-        function updateCarousel() {
-            track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-            
-            // Disable buttons when needed
-            prevBtn.disabled = currentIndex === 0;
-            nextBtn.disabled = currentIndex >= cards.length - getVisibleCards();
-        }
-        
-        function getVisibleCards() {
-            const containerWidth = carousel.offsetWidth;
-            return Math.floor(containerWidth / cardWidth);
-        }
-        
-        prevBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
-            }
-        });
-        
-        nextBtn.addEventListener('click', () => {
-            const visibleCards = getVisibleCards();
-            if (currentIndex < cards.length - visibleCards) {
-                currentIndex++;
-                updateCarousel();
-            }
-        });
-        
-        // Handle window resize
-        window.addEventListener('resize', updateCarousel);
-        
-        // Initialize
-        updateCarousel();
-    });
-    
-    // Initialize date pickers
-    if (typeof flatpickr !== 'undefined') {
-        flatpickr('#checkin', {
-            dateFormat: 'd/m/Y',
-            minDate: 'today',
-            locale: 'pt',
-            disable: [
-                function(date) {
-                    // Only allow Friday, Saturday, Sunday
-                    return date.getDay() !== 5 && date.getDay() !== 6 && date.getDay() !== 0;
-                }
-            ],
-            onChange: function(selectedDates) {
-                const checkoutPicker = document.querySelector('#checkout')._flatpickr;
-                checkoutPicker.set('minDate', new Date(selectedDates[0].getTime() + 24 * 60 * 60 * 1000));
-            }
-        });
-        
-        flatpickr('#checkout', {
-            dateFormat: 'd/m/Y',
-            minDate: new Date().fp_incr(1),
-            locale: 'pt',
-            disable: [
-                function(date) {
-                    // Only allow Friday, Saturday, Sunday
-                    return date.getDay() !== 5 && date.getDay() !== 6 && date.getDay() !== 0;
-                }
-            ]
-        });
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: var(--text-color);
+    line-height: 1.3;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--secondary-color);
+}
+
+.section-header p {
+    font-size: 18px;
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.section-header.light h2,
+.section-header.light p {
+    color: var(--white);
+}
+
+.section-header.light h2::after {
+    background-color: var(--white);
+}
+
+.bg-light {
+    background-color: var(--bg-light);
+}
+
+.bg-dark {
+    background-color: var(--bg-dark);
+    color: var(--white);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px; /* Slightly smaller padding */
+    border-radius: 4px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    font-size: 14px; /* Smaller font size */
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.btn-outline:hover {
+    background-color: var(--white);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-light);
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow);
+}
+
+.btn-text {
+    color: var(--primary-color);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: var(--transition);
+}
+
+.btn-text:hover {
+    color: var(--primary-dark);
+}
+
+.btn-text i {
+    transition: var(--transition);
+}
+
+.btn-text:hover i {
+    transform: translateX(3px);
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    z-index: 999;
+    box-shadow: var(--box-shadow-lg);
+    transition: var(--transition);
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.1);
+    background-color: #128C7E;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.logo:hover {
+    color: var(--primary-dark);
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    font-weight: 500;
+    font-size: 16px;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 70px;
+    box-shadow: var(--box-shadow-lg);
+}
+
+#three-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.hero-content {
+    text-align: center;
+    color: var(--white);
+    max-width: 800px;
+    padding: 0 20px;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease;
+}
+
+.hero-content p {
+    background-color: rgba(69, 74, 67, 0.437);
+    font-size: 20px;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 4px rgba(16, 1, 1, 0.3);
+    animation: fadeIn 1s ease 0.2s forwards;
+    opacity: 0;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    animation: fadeIn 1s ease 0.4s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-    
-    // Form Submissions
-    const bookingForm = document.getElementById('booking-form');
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const submitButton = bookingForm.querySelector('button[type="submit"]');
-            submitButton.disabled = true;
-            submitButton.textContent = 'Enviando...';
-            
-            // Simple form validation
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const accommodation = document.getElementById('accommodation').value;
-            const checkin = document.getElementById('checkin').value;
-            const checkout = document.getElementById('checkout').value;
-            
-            if (!name || !email || !accommodation || !checkin || !checkout) {
-                alert('Por favor, preencha todos os campos obrigatórios.');
-                submitButton.disabled = false;
-                submitButton.textContent = 'Verificar Disponibilidade';
-                return;
-            }
-            
-            // Simulate form submission (replace with actual submission)
-            setTimeout(() => {
-                alert('Sua solicitação de reserva foi enviada com sucesso! Entraremos em contato em breve.');
-                bookingForm.reset();
-                submitButton.disabled = false;
-                submitButton.textContent = 'Verificar Disponibilidade';
-            }, 1500);
-        });
-    }
-    
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-            submitButton.disabled = true;
-            submitButton.textContent = 'Enviando...';
-            
-            // Simple form validation
-            const name = document.getElementById('contact-name').value;
-            const email = document.getElementById('contact-email').value;
-            const message = document.getElementById('contact-message').value;
-            
-            if (!name || !email || !message) {
-                alert('Por favor, preencha todos os campos obrigatórios.');
-                submitButton.disabled = false;
-                submitButton.textContent = 'Enviar Mensagem';
-                return;
-            }
-            
-            // Simulate form submission (replace with actual submission)
-            setTimeout(() => {
-                alert('Sua mensagem foi enviada com sucesso! Entraremos em contato em breve.');
-                contactForm.reset();
-                submitButton.disabled = false;
-                submitButton.textContent = 'Enviar Mensagem';
-            }, 1500);
-        });
-    }
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-    
-    // Add animation on scroll
-    const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.section-header, .highlight-item, .accommodation-card, .experience-card, .gallery-item, .testimonial-item');
-        
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.2;
-            
-            if (elementPosition < screenPosition) {
-                element.classList.add('animated');
-            }
-        });
-    };
-    
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Run once on load
-});
-
-// Add loading animation to buttons when submitting
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('form').forEach(form => {
-        form.addEventListener('submit', function() {
-            const submitButton = this.querySelector('button[type="submit"]');
-            if (submitButton) {
-                submitButton.classList.add('btn-loading');
-            }
-        });
-    });
-});
-
-// Dark Mode Toggle
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
-
-// Check for saved user preference, if any
-const currentTheme = localStorage.getItem('theme');
-if (currentTheme) {
-    body.classList.add(currentTheme);
-    if (currentTheme === 'dark-mode') {
-        themeToggle.checked = true;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-// Listen for toggle changes
-themeToggle.addEventListener('change', () => {
-    if (themeToggle.checked) {
-        body.classList.add('dark-mode');
-        localStorage.setItem('theme', 'dark-mode');
-    } else {
-        body.classList.remove('dark-mode');
-        localStorage.setItem('theme', '');
-    }
-});
+/* Highlights Section */
+.highlights {
+    padding: 60px 0;
+    background-color: var(--white);
+}
 
-// Adjust Three.js scene colors for dark mode
-function adjustThreeSceneForDarkMode(isDarkMode) {
-    if (typeof scene === 'undefined' || typeof renderer === 'undefined') {
-        console.error('Three.js scene or renderer is not defined.');
-        return;
-    }
-    const particlesMaterial = scene.children.find(child => child instanceof THREE.Points)?.material;
-    if (!particlesMaterial) {
-        console.error('Particles material not found in the scene.');
-        return;
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.highlight-item {
+    text-align: center;
+    padding: 30px 20px;
+    border-radius: 8px;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.highlight-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-lg);
+}
+
+.highlight-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.highlight-item h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.highlight-item p {
+    color: var(--text-light);
+    font-size: 16px;
+}
+
+/* Carousel */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    padding: 0 50px;
+}
+
+.carousel {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 15px; /* Further reduced gap for tighter spacing */
+    padding: 10px 0; /* Further reduced padding */
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-button:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-button.prev {
+    left: 0;
+}
+
+.carousel-button.next {
+    right: 0;
+}
+
+/* Accommodation Cards */
+.accommodation-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    min-width: 200px; /* Further reduced min-width for narrower cards */
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+}
+
+.accommodation-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--box-shadow-lg);
+}
+
+.accommodation-img {
+    position: relative;
+    height: 120px; /* Further reduced image height */
+    overflow: hidden;
+}
+
+.accommodation-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.accommodation-card:hover .accommodation-img img {
+    transform: scale(1.05);
+}
+
+.accommodation-tag {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.accommodation-content {
+    padding: 12px; /* Further reduced padding */
+}
+
+.accommodation-content h3 {
+    font-size: 16px; /* Smaller font size */
+    margin-bottom: 6px;
+}
+
+.accommodation-meta {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 12px; /* Smaller font size */
+    color: var(--text-light);
+}
+
+.accommodation-meta span {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.accommodation-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.accommodation-features span {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 12px; /* Smaller font size */
+    color: var(--text-light);
+}
+
+.accommodation-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accommodation-price {
+    display: flex;
+    align-items: flex-end;
+}
+
+.price {
+    font-size: 16px; /* Smaller font size */
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.period {
+    font-size: 11px; /* Smaller font size */
+    color: var(--text-light);
+    margin-left: 4px;
+}
+
+/* Experiences Grid */
+.experiences-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.experience-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.experience-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-lg);
+}
+
+.experience-img {
+    height: 200px;
+    overflow: hidden;
+}
+
+.experience-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.experience-card:hover .experience-img img {
+    transform: scale(1.05);
+}
+
+.experience-content {
+    padding: 20px;
+}
+
+.experience-content h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.experience-content p {
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 200px;
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-item.wide {
+    grid-column: span 2;
+}
+
+/* Booking Form */
+.booking-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.booking-form {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow-lg);
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-group.full-width {
+    flex: 0 0 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--gray-200);
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(35, 94, 61, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Testimonials */
+.testimonials-carousel {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding: 20px 0;
+    scroll-snap-type: x mandatory;
+}
+
+.testimonial-item {
+    min-width: 350px;
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    scroll-snap-align: start;
+}
+
+.testimonial-content {
+    margin-bottom: 20px;
+    font-style: italic;
+    color: var(--text-light);
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.testimonial-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.testimonial-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.testimonial-info h4 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.testimonial-stars {
+    color: var(--secondary-color);
+}
+
+/* Contact Section */
+.contact-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.contact-item {
+    display: flex;
+    gap: 15px;
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.contact-item h4 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.contact-item p, .contact-item a {
+    color: var(--text-light);
+    transition: var(--transition);
+}
+
+.contact-item a:hover {
+    color: var(--primary-color);
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: var(--transition);
+}
+
+.social-link:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+}
+
+.contact-form {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+}
+
+/* Footer */
+footer {
+    background-color: var(--bg-dark);
+    color: var(--white);
+    padding: 60px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.footer-col p {
+    color: var(--gray-400);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.footer-col h4 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: var(--gray-400);
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--white);
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--gray-400);
+    font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero-content h1 {
+        font-size: 40px;
     }
     
-    if (isDarkMode) {
-        // Darker background for Three.js scene
-        renderer.setClearColor(0x050505, 1);
-        
-        // Adjust particle colors for better contrast
-        const colors = particlesMaterial.geometry.attributes.color.array;
-        for (let i = 0; i < colors.length; i += 3) {
-            // Lighten particles slightly for dark mode
-            colors[i] = Math.min(1, colors[i] * 1.2);
-            colors[i + 1] = Math.min(1, colors[i + 1] * 1.2);
-            colors[i + 2] = Math.min(1, colors[i + 2] * 1.2);
-        }
-        particlesMaterial.geometry.attributes.color.needsUpdate = true;
-    } else {
-        // Light background for Three.js scene
-        renderer.setClearColor(0x000000, 0);
-        
-        // Restore original particle colors
-        const colors = particlesMaterial.geometry.attributes.color.array;
-        for (let i = 0; i < colors.length; i += 3) {
-            const y = particlesMaterial.geometry.attributes.position.array[i + 1];
-            
-            if (y > 1.5) {
-                colors[i] = 1;
-                colors[i + 1] = 1;
-                colors[i + 2] = 1;
-            } else if (y > 0.8) {
-                const gray = 0.6 + Math.random() * 0.2;
-                colors[i] = gray;
-                colors[i + 1] = gray;
-                colors[i + 2] = gray;
-            } else if (y > 0.3) {
-                colors[i] = 0.2 + Math.random() * 0.1;
-                colors[i + 1] = 0.4 + Math.random() * 0.1;
-                colors[i + 2] = 0.2 + Math.random() * 0.1;
-            } else {
-                colors[i] = 0.4 + Math.random() * 0.1;
-                colors[i + 1] = 0.3 + Math.random() * 0.1;
-                colors[i + 2] = 0.2 + Math.random() * 0.1;
-            }
-        }
-        particlesMaterial.geometry.attributes.color.needsUpdate = true;
+    .section {
+        padding: 60px 0;
+    }
+    
+    .section-header h2 {
+        font-size: 32px;
     }
 }
 
-// Update Three.js scene when theme changes
-themeToggle.addEventListener('change', () => {
-    adjustThreeSceneForDarkMode(themeToggle.checked);
-});
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 32px;
+    }
+    
+    .hero-content p {
+        font-size: 18px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(-150%);
+        transition: var(--transition);
+    }
+    
+    .nav-links.active {
+        transform: translateY(0);
+    }
+    
+    .carousel-container {
+        padding: 0 20px;
+    }
+    
+    .carousel-button {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
 
-// Initialize Three.js scene colors based on current theme
-if (body.classList.contains('dark-mode')) {
-    adjustThreeSceneForDarkMode(true);
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 28px;
+    }
+    
+    .section-header h2 {
+        font-size: 28px;
+    }
+    
+    .section-header p {
+        font-size: 16px;
+    }
+    
+    .accommodation-card {
+        min-width: 180px; /* Further reduced for small screens */
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-item.wide {
+        grid-column: span 1;
+    }
+    
+    .booking-form {
+        padding: 30px 20px;
+    }
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+    color: #ffffff;
+}
+
+body.dark-mode .section-header p,
+body.dark-mode .highlight-item p,
+body.dark-mode .accommodation-meta,
+body.dark-mode .accommodation-features span,
+body.dark-mode .experience-content p {
+    color: #f5ecec;
+}
+
+body.dark-mode header {
+    background-color: rgba(18, 18, 18, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .accommodation-card,
+body.dark-mode .experience-card,
+body.dark-mode .testimonial-item,
+body.dark-mode .booking-form,
+body.dark-mode .contact-form {
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    background-color: #2d2d2d;
+    border-color: #3d3d3d;
+    color: #e0e0e0;
+}
+
+body.dark-mode input:focus,
+body.dark-mode select:focus,
+body.dark-mode textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(35, 94, 61, 0.3);
+}
+
+body.dark-mode .bg-light {
+    background-color: #1a1a1a;
+}
+
+body.dark-mode .bg-dark {
+    background-color: #0d0d0d;
+}
+
+body.dark-mode .footer-links a,
+body.dark-mode .footer-col p {
+    color: #9e9e9e;
+}
+
+body.dark-mode .footer-links a:hover {
+    color: var(--white);
+}
+
+body.dark-mode .nav-links a {
+    color: #e0e0e0;
+}
+
+body.dark-mode .nav-links a:hover {
+    color: var(--secondary-color);
+}
+body.dark-mode label {
+    color: #bfb6b6;
+}
+
+/* Toggle Switch */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 999;
+    background-color: rgba(30, 30, 30, 0.8);
+    padding: 8px 12px;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.theme-switch-wrapper span {
+    margin-right: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 24px;
+    position: relative;
+    width: 50px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #3d3d3d;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: var(--transition);
+}
+
+.slider:before {
+    background-color: var(--white);
+    bottom: 3px;
+    content: "";
+    height: 18px;
+    left: 3px;
+    position: absolute;
+    transition: var(--transition);
+    width: 18px;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 24px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Garantir contraste no modo claro */
+body:not(.dark-mode) {
+    color: #333333;
+}
+
+body:not(.dark-mode) .section-header p,
+body:not(.dark-mode) .highlight-item p,
+body:not(.dark-mode) .accommodation-meta,
+body:not(.dark-mode) .accommodation-features span,
+body:not(.dark-mode) .experience-content p {
+    color: #666666;
+}
+
+/* Ajustes específicos para elementos claros sobre fundo branco */
+body:not(.dark-mode) .accommodation-card,
+body:not(.dark-mode) .experience-card,
+body:not(.dark-mode) .testimonial-item,
+body:not(.dark-mode) .booking-form,
+body:not(.dark-mode) .contact-form {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+body:not(.dark-mode) .accommodation-content h3,
+body:not(.dark-mode) .experience-content h3,
+body:not(.dark-mode) .testimonial-content {
+    color: #333333;
+}
+
+/* Ajustes para o hero section no modo claro */
+body:not(.dark-mode) .hero-content {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Melhorar contraste nos botões */
+.btn-primary {
+    color: #ffffff !important;
+}
+
+.btn-outline {
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.btn-outline:hover {
+    color: #ffffff !important;
+}
+
+/* Ajustes para o menu de navegação no modo claro */
+body:not(.dark-mode) .nav-links a {
+    color: #333333;
+}
+
+body:not(.dark-mode) .nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Ajustes para formulários no modo claro */
+body:not(.dark-mode) input,
+body:not(.dark-mode) select,
+body:not(.dark-mode) textarea {
+    background-color: #ffffff;
+    border-color: #171515;
+    color: #333333;
+}
+
+body:not(.dark-mode) label {
+    color: #333333;
+}
+body.dark-mode .highlight-item h3 {
+    color: #1d1919;
+}
+
+body.dark-mode .highlight-item p {
+    color: #1d1919;
+}
+
+/* Ajustes para o footer no modo claro */
+body:not(.dark-mode) footer {
+    background-color: #2c3e50;
+    color: #ffffff;
+}
+
+body:not(.dark-mode) .footer-links a {
+    color: #b0b0b0;
+}
+
+body:not(.dark-mode) .footer-links a:hover {
+    color: #ffffff;
 }
