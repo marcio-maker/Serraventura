@@ -459,6 +459,7 @@ header {
     min-width: 250px; /* Reduced min-width for smaller cards */
     flex: 0 0 auto;
     scroll-snap-align: start;
+    box-sizing: border-box; /* Prevent layout issues */
 }
 
 .accommodation-card:hover {
